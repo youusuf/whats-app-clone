@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:whats_app_clone/customUI/custom_card.dart';
+import 'package:whats_app_clone/model/chat_model.dart';
 
 
 class ChatPage extends StatefulWidget {
@@ -10,6 +11,43 @@ class ChatPage extends StatefulWidget {
 }
 
 class _ChatPageState extends State<ChatPage> {
+  List<ChatModel> chats = [
+    ChatModel(
+      name: "Masud",
+      icon: "person.svg",
+      isGroup: false,
+      time:"12.30",
+      currentMessage: "Ki Koros?"     
+      ),
+      ChatModel(
+      name: "Masud",
+      icon: "person.svg",
+      isGroup: false,
+      time:"12.30",
+      currentMessage: "Ki Koros?"     
+      ),
+      ChatModel(
+      name: "Buddies",
+      icon: "person.svg",
+      isGroup: true,
+      time:"12.30",
+      currentMessage: "Ki Koros?"     
+      ),
+      ChatModel(
+      name: "Masud",
+      icon: "person.svg",
+      isGroup: false,
+      time:"12.30",
+      currentMessage: "Ki Koros?"     
+      ),
+      ChatModel(
+      name: "Masud",
+      icon: "person.svg",
+      isGroup: false,
+      time:"12.30",
+      currentMessage: "Ki Koros?"     
+      )
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,12 +56,14 @@ class _ChatPageState extends State<ChatPage> {
       child: const Icon(Icons.message),
       onPressed:(){},
     ),
-    body:ListView(
-         children: [
-            CustomCard(),
-            CustomCard(),
-         ],
+    body:ListView.builder(
+      itemCount: chats.length,
+      itemBuilder:(context,index){
+            return  CustomCard(
+              chats[index]
+            );
 
+      },
     ),
     );
   }
