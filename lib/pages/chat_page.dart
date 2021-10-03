@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:whats_app_clone/customUI/custom_card.dart';
 import 'package:whats_app_clone/model/chat_model.dart';
+import 'package:whats_app_clone/screen/select_contact.dart';
 
 
 class ChatPage extends StatefulWidget {
@@ -54,7 +55,9 @@ class _ChatPageState extends State<ChatPage> {
     floatingActionButton: FloatingActionButton(
       backgroundColor: Colors.green.withOpacity(0.8),
       child: const Icon(Icons.message),
-      onPressed:(){},
+      onPressed:(){
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>SelectContact()));
+      },
     ),
     body:ListView.builder(
       itemCount: chats.length,
@@ -62,7 +65,6 @@ class _ChatPageState extends State<ChatPage> {
             return  CustomCard(
               chats[index]
             );
-
       },
     ),
     );
