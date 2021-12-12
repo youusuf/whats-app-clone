@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:whats_app_clone/customUI/button_card.dart';
 import 'package:whats_app_clone/customUI/contact_card.dart';
 import 'package:whats_app_clone/model/chat_model.dart';
+import 'package:whats_app_clone/screen/create_group.dart';
 
 
 class SelectContact extends StatelessWidget {
@@ -32,34 +33,34 @@ class SelectContact extends StatelessWidget {
       appBar: AppBar(
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children: const[
             Text("Select Contact"),
             Text("20 contacts")
           ],
         ),
         actions: [
-          Icon(Icons.search),
+          const Icon(Icons.search),
            PopupMenuButton(
                itemBuilder:(context){
                  return [
                         PopupMenuItem(
                           onTap:(){},
-                          child:Text("Invite a friend"),
+                          child:const Text("Invite a friend"),
                           value: "Invite a friend",
                           ),
                            PopupMenuItem(
                           onTap:(){},
-                          child:Text("Contacts"),
+                          child:const Text("Contacts"),
                           value: "Contacts",
                           ),
                            PopupMenuItem(
                           onTap:(){},
-                          child:Text("Refresh"),
+                          child:const Text("Refresh"),
                           value: "Refresh",
                           ),
                            PopupMenuItem(
                           onTap:(){},
-                          child:Text("Help"),
+                          child:const Text("Help"),
                           value: "Help",
                           ),
                           
@@ -69,16 +70,21 @@ class SelectContact extends StatelessWidget {
         ],
       ),
       body:ListView.builder(
-        itemCount: contact.length,
+        itemCount: contact.length+2,
         itemBuilder:(context,index){
           if(index ==0){
-            return ButtonCard(name: "New Group",icon: Icons.group);
+            return InkWell(
+              onTap:(){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>CreateGroup()));
+              },
+              child: ButtonCard(name: "New Group",icon: Icons.group)
+              );
           }
            if(index ==1){
             return ButtonCard(name: "new Contact",icon: Icons.group);
           }
           
-        return ContactCard(contact: contact[index],);
+        return ContactCard(contact: contact[index-2],);
       })
     );
   }
